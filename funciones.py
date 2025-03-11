@@ -72,7 +72,7 @@ def obtener_vecinos(matriz, nodo):
     x, y = nodo
     for dx, dy in acciones:
         nx, ny = x + dx, y + dy
-        if  diferencia_altura(matriz,nodo,(nx,ny),10.0174,1.25):  
+        if  diferencia_altura(matriz,nodo,(nx,ny)):  
             vecinos.append((nx, ny))
     return vecinos
 
@@ -104,10 +104,6 @@ def h(nodo1,objetivo):
     x2,y2=objetivo
     return np.abs(x1-x2)+np.abs(y1-y2)
 
-def g(origen,nodo1):
-    x1,y1=origen
-    x2,y2=nodo1
-    return np.abs(x1-x2)+np.abs(y1-y2)
 
 def a_estrella(matriz, origen, objetivo):
     frontera = []
