@@ -28,11 +28,12 @@ def imagen(camino,origen,destino,matriz,nc,nr):
     plt.ylabel('y (m)')
 
     plt.scatter([x[0] for x in camino], [x[1] for x in camino], color='blue', s=10)
-    plt.scatter(origen[0], origen[1], color='green', s=10)
-    plt.scatter(destino[0], destino[1], color='red', s=10)
+    plt.scatter(origen[0], origen[1], color='green', s=10,label='Origen')
+    plt.scatter(destino[0], destino[1], color='red', s=10,label='Destino')
     plt.xticks(np.arange(0, scale*nc, step=1000), rotation=45)
     plt.yticks(np.arange(0, scale*nr, step=1000))
     #plt.grid()
+    plt.legend()
     plt.show()
 
 def cyr(matriz,x,y,scale):
