@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LightSource
 from collections import deque
 import heapq
-
+import random
 
 
 def imagen(camino,origen,destino,matriz,nc,nr):
@@ -88,7 +88,7 @@ def diferencia_altura(matriz,nodo1,nodo2,scale=10.0174,altura=1.25):
     if altura1==-1 or altura2==-1:  
         return False 
     distancia=np.abs(altura1-altura2)
-    if distancia<=altura:
+    if distancia<altura:
         return True
     else:
         return False
@@ -163,3 +163,44 @@ def a_estrella(matriz, origen, objetivo):
     camino.reverse()
 
     return camino    
+
+def obtener_vecinos2(matriz, nodo):
+    acciones = [(-1, 0), (1, 0), (0, -1), (0, 1),(1,1),(-1,1),(1,-1),(-1,-1)]  
+    x,y=nodo
+    while True:
+        num = random.randint(0, 7)
+        dx, dy = acciones[num]
+        nx, ny = x + dx, y + dy
+        if  diferencia_altura(matriz,nodo,(nx,ny)):  
+            return (nx, ny)
+        else:
+            continue
+
+
+def altura_nodo(matriz,nodo,scale=10.045):
+    x,y=nodo
+    ra,ca=cyr(matriz,x,y,scale)
+    return matriz[ra,ca]
+
+def es_mejor(matriz,nodo_origen,nodo_vecino):
+    altura1=altura_nodo(matriz,nodo_origen)
+    altura2=altura_nodo(matriz,nodo_vecino)
+    if altura1 >= altura2:  
+        return False 
+    else:
+        return True
+    
+
+def recocido(matriz,origen,t0,tf,alpha):
+    actual=origen
+    t=t0
+    while t>tf:
+        vecino=obtener_vecinos2(matriz,actual)
+        if es_mejor(matriz,actual,vecino):
+            actual=vecino
+        else:
+            p=random.random()
+            if p<np.exp((altura_nodo(matriz,actual)-altura_nodo(matriz,vecino))/t):
+                actual=vecino
+        t=t*alpha
+    return actual
