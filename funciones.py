@@ -58,7 +58,7 @@ def diferencia_altura(matriz,nodo1,nodo2,scale=10.0174,altura=1.25):
     ra2,ca2=cyr(matriz,c2,r2,scale)
     altura1=matriz[ra1,ca1]
     altura2=matriz[ra2,ca2]
-    if altura1==-1 or altura2==-1:
+    if altura1==-1 or altura2==-1:  
         return False 
     distancia=np.abs(altura1-altura2)
     if distancia<=altura:
