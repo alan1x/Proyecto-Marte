@@ -89,7 +89,10 @@ class Marte_Problem_Crater:
     def result(self, state, action):
         return action
 
-
+def calxy(nr, nc, r, c, scale):
+    y = (nr - r) * scale
+    x = c * scale
+    return x, y
 
 def camino_recorrido_crater(crater_map, x_start ,y_start):
     
@@ -107,8 +110,9 @@ def camino_recorrido_crater(crater_map, x_start ,y_start):
     problem = Marte_Problem_Crater(start, crater_map)
     gbfs = GreedyBestFirstSearch(problem)
     solution = gbfs.search()
-    print(f"La solución es: {solution}")
-    print(f"Longitud del camino: {len(solution)}")
+    solution_scaled = [calxy(nr, nc, r, c, scale) for r, c in solution]
+    print(f"La solución es: {solution_scaled}")
+    print(f"Longitud del camino: {len(solution_scaled)}")
     print(f"Altura de la meta: {crater_map[problem.goal[0], problem.goal[1]]}")
     print(f"Altura del camino recorrido: {crater_map[start[0], start[1]]}")
 
@@ -193,8 +197,9 @@ def camino_recorrido(mars_map, x_start, y_start, x_goal, y_goal):
     problem = Marte_Problem(start, goal, mars_map)
     gbfs = GreedyBestFirstSearch(problem)
     solution = gbfs.search()
-    print(f"La solución es: {solution}")
-    print(f"Longitud del camino: {len(solution)}")
+    solution_scaled = [calxy(nr, nc, r, c, scale) for r, c in solution]
+    print(f"La solución es: {solution_scaled}")
+    print(f"Longitud del camino: {len(solution_scaled)}")
     print(f"Altura de la meta: {mars_map[goal]}")
     print(f"Altura del camino: {[mars_map[r, c] for r, c in solution]}")
     cmap = copy.copy(plt.cm.get_cmap('autumn'))
