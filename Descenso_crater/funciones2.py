@@ -83,7 +83,7 @@ def altura_nodo(matriz,nodo,scale=10.045):
     ra,ca=cyr(matriz,x,y,scale)
     return matriz[ra,ca]
 
-def diferencia_altura2(matriz,nodo1,nodo2,altura=2):
+def diferencia_altura(matriz,nodo1,nodo2,altura=2):
     altura1=altura_nodo(matriz,nodo1)
     altura2=altura_nodo(matriz,nodo2)
     if altura1==-1 or altura2==-1:  
@@ -96,14 +96,14 @@ def diferencia_altura2(matriz,nodo1,nodo2,altura=2):
 
 
 
-def obtener_vecinos2(matriz, nodo):
+def obtener_vecinos(matriz, nodo):
     acciones = [(-1, 0), (1, 0), (0, -1), (0, 1),(1,1),(-1,1),(1,-1),(-1,-1)]  
     x,y=nodo
     while True:
         num = random.randint(0, 7)
         dx, dy = acciones[num]
         nx, ny = x + dx, y + dy
-        if  diferencia_altura2(matriz,nodo,(nx,ny),4):  
+        if  diferencia_altura(matriz,nodo,(nx,ny),4):  
             return (nx, ny)
         else:
             continue
@@ -123,7 +123,7 @@ def recocido(matriz, origen, t0, tf, alpha,k):
     t = t0
     camino = [actual]
     while t > tf:
-        vecino = obtener_vecinos2(matriz, actual)
+        vecino = obtener_vecinos(matriz, actual)
         if es_mejor(matriz, actual, vecino):
             actual = vecino
         else:
