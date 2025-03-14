@@ -119,7 +119,7 @@ def es_mejor(matriz,nodo_origen,nodo_vecino):
         return False
     
 
-def recocido(matriz, origen, t0, tf, alpha):
+def recocido(matriz, origen, t0, tf, alpha,k):
     actual = origen
     t = t0
     camino = [actual]
@@ -129,7 +129,7 @@ def recocido(matriz, origen, t0, tf, alpha):
             actual = vecino
         else:
             p = random.random()
-            if p < np.exp((altura_nodo(matriz, actual) - altura_nodo(matriz, vecino)) / t):
+            if p < np.exp(k*(altura_nodo(matriz, actual) - altura_nodo(matriz, vecino)) / t):
                 actual = vecino
         t = t * alpha
         camino.append(actual)
