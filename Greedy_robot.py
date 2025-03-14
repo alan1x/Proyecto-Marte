@@ -102,7 +102,7 @@ def camino_recorrido_crater(crater_map, x_start ,y_start):
         c = round(x / scale)
         return r, c
 
-    scale = 10.0174
+    scale = 10.045
     nr, nc = crater_map.shape  
 
     start = calcrc(nr, nc, x_start, y_start, scale)
@@ -187,7 +187,7 @@ def camino_recorrido(mars_map, x_start, y_start, x_goal, y_goal):
         return r, c
 
 
-    scale = 10.0174
+    scale = 10.045
     nr, nc = mars_map.shape  
 
     start = calcrc(nr, nc, x_start, y_start, scale)
