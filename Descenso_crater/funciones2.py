@@ -113,10 +113,10 @@ def obtener_vecinos2(matriz, nodo):
 def es_mejor(matriz,nodo_origen,nodo_vecino):
     altura1=altura_nodo(matriz,nodo_origen)
     altura2=altura_nodo(matriz,nodo_vecino)
-    if altura1 >= altura2:  
-        return False 
+    if altura1 <= altura2:  
+        return True 
     else:
-        return True
+        return False
     
 
 def recocido(matriz, origen, t0, tf, alpha):
