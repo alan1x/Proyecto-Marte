@@ -2,8 +2,6 @@ import numpy as np
 import copy
 import matplotlib.pyplot as plt
 from matplotlib.colors import LightSource
-from collections import deque
-import heapq
 import random
 
 
@@ -54,8 +52,9 @@ def imagen2(camino,origen,matriz,nc,nr,scale=10.045):
     plt.xlabel('x (m)')
     plt.ylabel('y (m)')
 
-    plt.scatter([x[0] for x in camino], [x[1] for x in camino], color='blue', s=10)
+    plt.scatter([x[0] for x in camino], [x[1] for x in camino], color='blue', s=9)
     plt.scatter(origen[0], origen[1], color='green', s=10,label='Origen')
+    plt.scatter(camino[-1][0], camino[-1][1], color='black', s=10,label='Punto final')
     plt.xticks(np.arange(0, scale*nc, step=1000), rotation=45)
     plt.yticks(np.arange(0, scale*nr, step=1000))
     #plt.grid()
@@ -104,7 +103,7 @@ def obtener_vecinos2(matriz, nodo):
         num = random.randint(0, 7)
         dx, dy = acciones[num]
         nx, ny = x + dx, y + dy
-        if  diferencia_altura2(matriz,nodo,(nx,ny)):  
+        if  diferencia_altura2(matriz,nodo,(nx,ny),4):  
             return (nx, ny)
         else:
             continue
